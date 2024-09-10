@@ -1,0 +1,42 @@
+{
+    "manifest_version": 3,
+    "name": "WebMotions Gesture Extension",
+    "version": "1.1",
+    "description": "Control 3D objects on webpages using hand gestures.",
+    "permissions": [
+      "storage",
+      "activeTab"
+    ],
+    "host_permissions": [
+      "<all_urls>"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": [
+          "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs",
+          "https://cdn.jsdelivr.net/npm/@tensorflow-models/handpose",
+          "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js",
+          "content_script.js"
+        ],
+        "run_at": "document_idle"
+      }
+    ],
+    "action": {
+      "default_popup": "popup/popup.html",
+      "default_icon": {
+        "16": "assets/icon16.png",
+        "48": "assets/icon48.png",
+        "128": "assets/icon128.png"
+      }
+    },
+    "icons": {
+      "16": "assets/icon16.png",
+      "48": "assets/icon48.png",
+      "128": "assets/icon128.png"
+    }
+  }
+  
