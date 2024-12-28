@@ -8,14 +8,28 @@
 </head>
 <body>
     <div class="container">
+        <button id="theme-toggle">🌓</button>
         <h3>WebMotions Settings</h3>
 
         <label for="gesture-toggle">Gesture Control</label>
         <button id="gesture-toggle">ON</button>
 
+        <label for="preset-select">Gesture Preset</label>
+        <select id="preset-select">
+            <option value="default">Default</option>
+            <option value="precise">Precise</option>
+            <option value="fast">Fast</option>
+        </select>
+
         <label for="sensitivity-slider">Gesture Sensitivity</label>
         <input type="range" id="sensitivity-slider" min="1" max="10" value="5">
         <span id="sensitivity-value">5</span>
+
+        <div class="performance-metrics">
+            <h4>Performance Metrics</h4>
+            <div>FPS: <span id="fps-value">0</span></div>
+            <div>Latency: <span id="latency-value">0</span>ms</div>
+        </div>
 
         <button id="reset-btn">Reset to Default</button>
     </div>

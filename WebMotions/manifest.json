@@ -20,6 +20,7 @@
           "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs",
           "https://cdn.jsdelivr.net/npm/@tensorflow-models/handpose",
           "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js",
+          "utils/performance-monitor.js",
           "content_script.js"
         ],
         "run_at": "document_idle"

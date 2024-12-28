@@ -44,11 +44,48 @@
         );
     }
 
+    function visualizeGesture(landmarks, gesture) {
+        const canvas = document.getElementById('gesture-canvas') || createGestureCanvas();
+        const ctx = canvas.getContext('2d');
+        
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw hand landmarks
+        landmarks.forEach(point => {
+            ctx.beginPath();
+            ctx.arc(point[0], point[1], 3, 0, 2 * Math.PI);
+            ctx.fillStyle = 'red';
+            ctx.fill();
+        });
+        
+        // Show gesture name
+        if (gesture) {
+            ctx.font = '20px Arial';
+            ctx.fillStyle = 'green';
+            ctx.fillText(`Gesture: ${gesture}`, 10, 30);
+        }
+    }
+
+    function createGestureCanvas() {
+        const canvas = document.createElement('canvas');
+        canvas.id = 'gesture-canvas';
+        canvas.width = 640;
+        canvas.height = 480;
+        canvas.style.position = 'fixed';
+        canvas.style.top = '0';
+        canvas.style.right = '0';
+        canvas.style.zIndex = '9999';
+        canvas.style.opacity = '0.7';
+        document.body.appendChild(canvas);
+        return canvas;
+    }
+
     setInterval(async () => {
         const predictions = await model.estimateHands(videoElement);
         if (predictions.length > 0) {
             const landmarks = predictions[0].landmarks;
             const gesture = detectGesture(landmarks);
+            visualizeGesture(landmarks, gesture);
             if (gesture) {
                 handleGesture(gesture);
             }
